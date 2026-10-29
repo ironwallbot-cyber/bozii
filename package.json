@@ -1,0 +1,19 @@
+{
+  "name": "bozii",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Bozii - autonomous AI workforce platform (monorepo root)",
+  "workspaces": [
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @bozii/web",
+    "build": "npm run build --workspace @bozii/web",
+    "typecheck": "tsc -b --noEmit",
+    "api:test": "cd apps/api && python3 -m pytest -q",
+    "api:serve": "cd apps/api && python3 -m uvicorn bozii.main:app --host 0.0.0.0 --port 8000"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

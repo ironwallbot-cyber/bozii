@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bozii-api"
+version = "0.1.0"
+description = "Bozii API - autonomous AI workforce platform backend"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "fastapi==0.162.0",
+    "uvicorn[standard]==0.54.0",
+    "sqlalchemy[asyncio]==2.0.55",
+    "aiosqlite==0.22.1",
+    "alembic==1.20.1",
+    "pydantic==2.14.1",
+    "pydantic-settings==2.15.0",
+    "httpx==0.28.1",
+    "python-dotenv==1.2.4",
+]
+
+[project.optional-dependencies]
+postgres = ["psycopg[binary]==3.2.3"]
+redis = ["redis==5.2.1"]
+dev = ["pytest==9.2.0", "pytest-asyncio==1.4.1", "anyio==4.15.1"]
+
+[tool.setuptools.packages.find]
+include = ["bozii*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+pythonpath = ["."]
+filterwarnings = ["ignore::DeprecationWarning"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
